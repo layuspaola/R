@@ -1,0 +1,49 @@
+---
+title: "penguins plot"
+author: "PAOLA"
+date: "2023-09-11"
+output: html_document
+---
+
+# Penguins Plot: Practica de analisis
+
+## Cargo el ambiente
+
+Nota: Establezco mi ambiente cargando el paquete "tidyverse" y "palmerpenguins"
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+```
+## color + especies
+
+```{r}
+ggplot(data=penguins)+ 
+  geom_point(mapping = aes(
+    x= flipper_length_mm, y=body_mass_g, color = species))+
+  geom_smooth(mapping = aes(x= flipper_length_mm, y=body_mass_g))+
+  labs(title="Palmer Penguins: Body Mass vs. Flipper Length", 
+       subtitle = "Sample of Three Species",
+       caption = "Data Collected by Dr. Kristen Gorman")+
+  annotate("text", x=220, y=3500, label="The gentoo are the largest", 
+           color="purple", fontface= "bold", size=4.5, angle=25)
+
+```
+
+## grafico para cada especie
+
+```{r}
+ggplot(data=penguins)+ 
+  geom_point(mapping = aes(
+    x= flipper_length_mm, y=body_mass_g, color = species))+
+  facet_wrap(~species)
+```
+
+
+
